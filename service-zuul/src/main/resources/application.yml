@@ -1,0 +1,19 @@
+#标明注册到哪个服务器
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+server:
+  port: 8086
+spring:
+  application:
+    name: service-zuul
+#路由功能 以/api-a/的请求访问service-ribbon服务；以/api-b/的请求访问service-feign服务
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: service-ribbon
+    api-b:
+      path: /api-b/**
+      serviceId: service-feign
